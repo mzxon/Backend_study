@@ -9,6 +9,7 @@ public class Sungjuk { //package 생략되어 있음
 	
 	//멤버함수 method
 	private void view() {}
+	
 	void calc() {//package생략가능
 		//클래스 내부의 멤버들 간에는 Access Modifier와 상관없이 접근 가능하다.
 		aver=(kor+eng+mat)/3;
