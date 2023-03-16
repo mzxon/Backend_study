@@ -21,3 +21,4 @@ public class Test08_constructor {
 		System.out.println("null");		
 		
 	}
+}
