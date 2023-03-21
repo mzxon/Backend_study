@@ -9,15 +9,15 @@ public class Test06_override {
 		//Korea클래스 생성후 실습합니다
 		
 		//1)오버라이드 하기 전
-		Seoul se=new Seoul();
-		se.view();
-		se.disp();
-		
-		
-		//2)오버라이드 한 후
-		Busan bu=new Busan();
-		bu.view();//final메소드는 상속은 가능하지만 오버라이드는 할 수 없다
-		bu.disp();
+//		Seoul se=new Seoul();
+//		se.view();
+//		se.disp();
+//		
+//		
+//		//2)오버라이드 한 후
+//		Busan bu=new Busan();
+//		bu.view();//final메소드는 상속은 가능하지만 오버라이드는 할 수 없다
+//		bu.disp();
 		
 		
 	}//main() end
