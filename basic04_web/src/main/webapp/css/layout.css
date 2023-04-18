@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/* layout.css */
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+body {
+    font: 20px 'Nanum Gothic',dotum sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+}
+p {font-size: 16px;}
+.margin {margin-bottom: 45px;}
+.bg-1 { 
+    background-color: #1abc9c; /* Green */
+    color: #ffffff;
+}
+.bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+}
+.bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+}
+.bg-4 { 
+    background-color: #000000; /* Black */
+    color: #fff;
+}
+.container-fluid {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+.navbar-nav  li a:hover {
+    color: #1abc9c !important;
+}
+
+#mydiv{
+    position: relative;    /*부모가 되는 div*/
+    left: 100px;
+    top: 10px;
+    /*8)*/
+    --width: 800px;
+    
+    width: 280px; /*9)가로 영역크기 줄이기*/
+    height: 100px;
+    
+    /*10*/
+    --background-color: hotpink;
+
+    background-color: white; /*11)배경색 흰색으로 바꾸기*/
+
+    overflow: hidden;          /*12)영역밖의 내용은 숨기기*/
+}
+
+#time {margin:5px; text-align: center; font-size: 30px; font-weight: bold;}

@@ -197,9 +197,33 @@ from (
 where rownum>=6 and rownum<=10;
 
 
+6)줄번호가 있는 3)의 테이블을 한번 더 셀프조인하고, rownum칼럼명을 r로 바꾼다
+select *
+from (
+		select bbsno, subject, wname, readcnt, indent, regdt, rownum as r
+		from (
+				select bbsno, subject, wname, readcnt, indent, regdt
+				from tb_bbs
+				order by grpno desc, ansnum asc
+			)
+	)
+where r>=6 and r<=10;
 
 
-
+7)페이징 + 검색
+  예) 제목에서 '파스타'가 있는 행을 검색해서 2페이지(6행~10행) 조회하시오
+select *
+from (
+		select bbsno, subject, wname, readcnt, indent, regdt, rownum as r
+		from (
+				select bbsno, subject, wname, readcnt, indent, regdt
+				from tb_bbs
+				where subject like '%파스타%'
+				order by grpno desc, ansnum asc
+			)
+	)
+where r>=6 and r<=10;
+  
 
 
 
