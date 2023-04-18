@@ -4,13 +4,13 @@
 <%@ include file="ssi.jsp" %>    
 <%@ include file="../header.jsp" %>
 
-<!-- 본문 시작 bbsUpdate.jsp-->
+<!-- 본문 시작 noticeUpdate.jsp-->
 <!-- 글번호가 일치하는 행을 가져와서, 수정폼에 출력하기 -->
 <h3>* 게시판 수정 *</h3>
 <p>
-	<a href="bbsForm.jsp">[글쓰기]</a>
+	<a href="noticeForm.jsp">[글쓰기]</a>
 	&nbsp;&nbsp;
-	<a href="bbsList.jsp?col=<%=col%>&word=<%=word%>&nowPage=<%=nowPage%>">[글목록]</a>
+	<a href="noticeList.jsp?col=<%=col%>&word=<%=word%>&nowPage=<%=nowPage%>">[글목록]</a>
 </p>
 <%
 	int bbsno=Integer.parseInt(request.getParameter("bbsno"));
@@ -19,7 +19,7 @@
 		out.println("해당 글 없음!");
 	}else{
 %>
-		<form name="bbsfrm" id="bbsfrm" method="post" action="bbsUpdateProc.jsp" onsubmit="return bbsCheck()">
+		<form name="bbsfrm" id="bbsfrm" method="post" action="noticeUpdateProc.jsp" onsubmit="return bbsCheck()">
 		<input type="hidden" name="bbsno" value="<%=bbsno%>">
 		<input type="hidden" name="col" value="<%=col%>">
 		<input type="hidden" name="word" value="<%=word%>">

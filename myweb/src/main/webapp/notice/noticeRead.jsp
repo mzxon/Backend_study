@@ -4,13 +4,13 @@
 <%@ include file="ssi.jsp" %>
 <%@ include file="../header.jsp" %>
 
-<!-- 본문 시작 bbsRead.jsp-->
+<!-- 본문 시작 noticeRead.jsp-->
 <div class="container">
 <h3>* 게시판 상세보기 *</h3>
 <p>
-	<a href="bbsForm.jsp">[글쓰기]</a>
+	<a href="noticeForm.jsp">[글쓰기]</a>
 	&nbsp;&nbsp;
-	<a href="bbsList.jsp?col=<%=col%>&word=<%=word%>&nowPage=<%=nowPage%>">[글목록]</a>
+	<a href="noticeList.jsp?col=<%=col%>&word=<%=word%>&nowPage=<%=nowPage%>">[글목록]</a>
 </p>
 <%
 	int bbsno=Integer.parseInt(request.getParameter("bbsno"));
@@ -55,9 +55,9 @@
 
 		</table>
 		<br>
-		<input type="button" value="답변쓰기" class="btn btn-info" onclick="location.href='bbsReply.jsp?bbsno=<%=bbsno%>&col=<%=col%>&word=<%=word%>&nowPage=<%=nowPage%>'">
-		<input type="button" value="수정" class="btn btn-warning" onclick="location.href='bbsUpdate.jsp?bbsno=<%=bbsno%>&col=<%=col%>&word=<%=word%>&nowPage=<%=nowPage%>'">
-		<input type="button" value="삭제" class="btn btn-danger" onclick="location.href='bbsDel.jsp?bbsno=<%=bbsno%>'">
+		<input type="button" value="답변쓰기" class="btn btn-info" onclick="location.href='noticeReply.jsp?bbsno=<%=bbsno%>&col=<%=col%>&word=<%=word%>&nowPage=<%=nowPage%>'">
+		<input type="button" value="수정" class="btn btn-warning" onclick="location.href='noticeUpdate.jsp?bbsno=<%=bbsno%>&col=<%=col%>&word=<%=word%>&nowPage=<%=nowPage%>'">
+		<input type="button" value="삭제" class="btn btn-danger" onclick="location.href='noticeDel.jsp?bbsno=<%=bbsno%>'">
 
 
 

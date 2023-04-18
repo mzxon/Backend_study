@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ include file="ssi.jsp" %>    
+    
 <%@ include file="../header.jsp" %>
 
-<!-- 본문 시작 bbsForm.jsp-->
-<h3>* 답변쓰기 *</h3>
-<p><a href="bbsList.jsp">[글목록]</a></p>							  <!-- 이벤트 발생 -> 자바스크립트 -->
+<!-- 본문 시작 noticeForm.jsp-->
+<h3>* 글쓰기 *</h3>
+<p><a href="noticeList.jsp">[글목록]</a></p>							  <!-- 이벤트 발생 -> 자바스크립트 -->
  																  <!-- myscript.js에 함수 작성함 -->
 <!-- url('../images/JJANG.png') --> 															
-<form name="bbsfrm" id="bbsfrm" method="post" action="bbsReplyProc.jsp" onsubmit="return bbsCheck()">
-<!-- 부모글 번호 -->
-<input type="hidden" name="bbsno" value="<%=request.getParameter("bbsno")%>">
-<input type="hidden" name="col" value="<%=col%>">
-<input type="hidden" name="word" value="<%=word%>">
-<input type="hidden" name="nowPage" value="<%=nowPage%>">
-
+<form name="noticefrm" id="noticefrm" method="post" action="noticeIns.jsp" onsubmit="return bbsCheck()">
 <div class="container" style="margin-left:auto; margin-right:auto;">
 <table class="table">
 <tr>
@@ -36,7 +29,7 @@
 </tr>
 <tr>
     <td colspan="2" align="center">
-       <input type="submit" value="답변쓰기" class="btn btn-success">
+       <input type="submit" value="쓰기" class="btn btn-success">
        <input type="reset"  value="취소" class="btn btn-danger">
     </td>
 </table>

@@ -7,10 +7,10 @@
 <%@ include file="../header.jsp" %>
 
 
-<!-- 본문 시작 bbsList.jsp-->
+<!-- 본문 시작 noticeList.jsp-->
 <div class="container">
-<h3>* 글목록 *</h3>
-<p><a href="bbsForm.jsp">[글쓰기]</a></p>
+<h3>* 공지사항 *</h3>
+<p><a href="noticeForm.jsp">[글쓰기]</a></p>
 
 <table class="table">	
 <thead>
@@ -23,10 +23,10 @@
 </thead>
 <tbody>
 <%
-	//한페이지당 출력할 행의 갯수
+//한페이지당 출력할 행의 갯수
 	int recordPerPage=10;
 
-	ArrayList<BbsDTO> list=dao.list3(col, word, nowPage, recordPerPage); //nowpage : 현재페이지, recordPerPage : 페이지당 출력할 행의 갯수
+	ArrayList<NoticeDTO> list=dao.list3(col, word, nowPage, recordPerPage); //nowpage : 현재페이지, recordPerPage : 페이지당 출력할 행의 갯수
 	if(list==null){
 		out.println("<tr>");
 		out.println("	<td colspan='4'>");
@@ -40,7 +40,7 @@
 		String today=Utility.getDate();
 	
 		for(int i=0; i<list.size(); i++){
-			dto=list.get(i);
+	dto=list.get(i);
 %>
 			<tr  class="active">
 				<td style="text-align: left">
@@ -50,7 +50,7 @@
 						out.println("<img src='../images/reply.gif'>");
 					}
 %>
-					<a href="bbsRead.jsp?bbsno=
+					<a href="noticeRead.jsp?bbsno=
 					<%=dto.getBbsno()%>&col=<%=col%>&word=<%=word%>&nowPage=<%=nowPage%>">
 					<%=dto.getSubject() %></a>
 				<!-- 테이블 제목 -->
@@ -99,7 +99,7 @@
 		<!-- 검색시작 -->
 		<tr>
 			<td colspan="4" style='text-align:center; height:50px;'>
-				<form action="bbsList.jsp" onsubmit="return searchCheck()">
+				<form action="noticeList.jsp" onsubmit="return searchCheck()">
 				<!-- 나를 다시 부르기 -->		<!-- myscript.js함수 작성 -->
 					<select name="col">
 						<option value="subject_content">제목+내용

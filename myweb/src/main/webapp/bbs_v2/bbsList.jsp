@@ -80,6 +80,11 @@
 		out.println("	  글갯수:<strong> "+ totalRecord + "</strong>");
 		out.println("	</td>");
 		out.println("</tr>");
+		
+		
+		
+		
+		
 %>
 		<!-- 검색시작 -->
 		<tr>
