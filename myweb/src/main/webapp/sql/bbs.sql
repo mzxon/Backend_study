@@ -133,6 +133,7 @@ where grpno=?
 
 ////////////////////////////////////////////////////////
 
+
 ● [검색]
 
 -- 제목+내용에서 '파스타'가 있는지 검색
@@ -146,6 +147,76 @@ where content like '%파스타%'
 
 -- 작성자에서 '파스타'가 있는지 검색
 where wname like '%파스타%'
+
+
+/////////////////////////////////////////////////////////
+
+
+● [검색]
+
+- rownum 줄번호 활용
+
+1)
+select bbsno, subject, wname, readcnt, indent, regdt
+from tb_bbs
+order by grpno desc, ansnum asc;
+
+
+2)rownum 추가-
+select bbsno, subject, wname, readcnt, indent, regdt, rownum
+from tb_bbs
+order by grpno desc, ansnum asc;
+
+
+3) 1)의 SQL문을 셀프조인하고, rownum 추가
+select bbsno, subject, wname, readcnt, indent, regdt, rownum
+from (
+		select bbsno, subject, wname, readcnt, indent, regdt
+		from tb_bbs
+		order by grpno desc, ansnum asc
+	);
+
+	
+4)줄번호 1~5조회 (1페이지)
+select bbsno, subject, wname, indent, regdt, rownum
+from (
+		select bbsno, subject, wname, readcnt, indent, regdt
+		from tb_bbs
+		order by grpno desc, ansnum asc
+	)
+where rownum>=1 and rownum<=5;
+
+
+5)줄번호 6~10 조회(2페이지)
+select bbsno, subject, wname, indent, regdt, rownum
+from (
+		select bbsno, subject, wname, readcnt, indent, regdt
+		from tb_bbs
+		order by grpno desc, ansnum asc
+	)
+where rownum>=6 and rownum<=10;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
