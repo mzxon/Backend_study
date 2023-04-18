@@ -23,10 +23,7 @@
 </thead>
 <tbody>
 <%
-	//한페이지당 출력할 행의 갯수
-	int recordPerPage=10;
-
-	ArrayList<BbsDTO> list=dao.list3(col, word, nowPage, recordPerPage); //nowpage : 현재페이지, recordPerPage : 페이지당 출력할 행의 갯수
+	ArrayList<BbsDTO> list=dao.list2(col, word);
 	if(list==null){
 		out.println("<tr>");
 		out.println("	<td colspan='4'>");
