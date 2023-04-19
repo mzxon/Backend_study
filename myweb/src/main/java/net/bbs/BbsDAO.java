@@ -452,13 +452,13 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 			con=dbopen.getConnection();
 			sql=new StringBuilder();
 			
-			sql.append(" SELECT subject ");
+			sql.append(" SELECT * ");
 			sql.append(" FROM tb_bbs ");
-			sql.append(" WHERE grpno=? AND indent>0");
+			sql.append(" WHERE ?>=1");
 			
 			
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setInt(1, dto.getGrpno());
+			pstmt.setInt(1, dto.getAnsnum());
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {

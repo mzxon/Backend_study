@@ -32,6 +32,7 @@
        <input type="submit" value="쓰기" class="btn btn-success">
        <input type="reset"  value="취소" class="btn btn-danger">
     </td>
+</tr>
 </table>
 </div>
 </form>

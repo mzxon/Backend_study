@@ -20,7 +20,7 @@ public class MemberDAO { //Data Access Object
 	}
 	
 	public String loginProc(MemberDTO dto) {
-		String result="";
+		String result=null;
 		
 		try {
 			con=dbopen.getConnection();
@@ -28,7 +28,7 @@ public class MemberDAO { //Data Access Object
 			sql=new StringBuilder();
 			sql.append(" SELECT mlevel ");
 			sql.append(" FROM member ");
-			sql.append(" WEHRE id=? AND passwd=? ");
+			sql.append(" WHERE id=? AND passwd=? ");
 			sql.append(" AND mlevel in ('A1', 'B1', 'C1', 'D1') ");
 			
 			pstmt=con.prepareStatement(sql.toString());
@@ -36,6 +36,7 @@ public class MemberDAO { //Data Access Object
 			pstmt.setString(2, dto.getPasswd());
 			
 			rs=pstmt.executeQuery();
+			
 			if(rs.next()) {
 				result=rs.getString("mlevel");
 			}

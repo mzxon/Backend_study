@@ -5,6 +5,7 @@
 
 <%@ include file="ssi.jsp" %>
 <%@ include file="../header.jsp" %>
+<jsp:useBean id="dto2" class="net.bbs.BbsDTO" scope="page"></jsp:useBean>
 
 
 <!-- 본문 시작 bbsList.jsp-->
@@ -27,6 +28,7 @@
 	int recordPerPage=10;
 
 	ArrayList<BbsDTO> list=dao.list3(col, word, nowPage, recordPerPage); //nowpage : 현재페이지, recordPerPage : 페이지당 출력할 행의 갯수
+	
 	if(list==null){
 		out.println("<tr>");
 		out.println("	<td colspan='4'>");
@@ -69,10 +71,21 @@
 				}
 				
 				//답변게시글 수 표현하기
+				int cnt=0;
 				if(dto.getIndent()==0){
-					int cntreply=dao.cntreply(dto);
-					out.println("("+cntreply+")");	
+					for(int j=i+1; j<list.size(); j++){
+						dto2=list.get(j);
+						if(dto.getGrpno()==dto2.getGrpno() && dto2.getIndent()!=0){
+							cnt++;
+						}else break;
+					}
 				}
+				if(cnt!=0) out.print("("+cnt+")");
+				
+				
+				
+				
+				
 				
 				
 				
