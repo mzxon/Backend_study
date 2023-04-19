@@ -1,17 +1,17 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 <%@ include file="ssi.jsp" %>
 <%@ include file="../header.jsp" %>
-<jsp:useBean id="dto2" class="net.bbs.BbsDTO" scope="page"></jsp:useBean>
 
+<jsp:useBean id="dto2" class="net.bbs.BbsDTO" scope="page"></jsp:useBean>
 
 <!-- 본문 시작 bbsList.jsp-->
 <div class="container">
 <h3>* 글목록 *</h3>
 <p><a href="bbsForm.jsp">[글쓰기]</a></p>
+
+
 
 <table class="table">	
 <thead>
@@ -37,16 +37,16 @@
 		out.println("</tr>");	
 	}else{
 	
-		
 		//오늘 날짜를 문자열 "2023-04-14"만들기
 		String today=Utility.getDate();
 		
 	
 		for(int i=0; i<list.size(); i++){
 			dto=list.get(i);
+			
 %>
-			<tr  class="active">
-				<td style="text-align: left">
+			<tr class="active" >
+				<td style="text-align: left;"  id="link">
 <%
 					//답변이미지 출력
 					for(int n=1; n<=dto.getIndent(); n++){
@@ -96,8 +96,11 @@
 				<td><%=dto.getReadcnt() %></td>
 				<td><%=dto.getRegdt().substring(0, 10) %></td>
 			</tr>
+			
+			
 <%
 		}
+			
 		
 		//글갯수
 		int totalRecord=dao.count2(col, word);

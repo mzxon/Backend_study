@@ -446,33 +446,6 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 	}
 	
 	
-	public int cntreply(BbsDTO dto) {
-		int cnt=0;
-		try {
-			con=dbopen.getConnection();
-			sql=new StringBuilder();
-			
-			sql.append(" SELECT * ");
-			sql.append(" FROM tb_bbs ");
-			sql.append(" WHERE ?>=1");
-			
-			
-			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setInt(1, dto.getAnsnum());
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				cnt++;
-			}
-			
-		} catch (Exception e) {
-			System.out.println("업데이트 실패 :"+e);
-		} finally {
-			DBClose.close(con, pstmt, rs);
-		}
-		return cnt;
-	}
-	
 	
 	
 	
