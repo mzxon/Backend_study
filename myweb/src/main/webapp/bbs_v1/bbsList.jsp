@@ -63,9 +63,7 @@
 					out.println("<img src='../images/hot.gif'>");
 				}
 				
-				//답변게시글 수 표현하기
-				int cntreply=dao.cntreply(dto);
-				out.println("("+cntreply+")");
+			
 				
 				
 %>				

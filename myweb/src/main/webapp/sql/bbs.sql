@@ -126,10 +126,38 @@ where grpno=2 and ansnum>=2
 		오필승코리아
 		무궁화 꽃이 피었습니다(2)
 
-select count(ansnum)
-from tb_bbs
-where grpno=?
+select subject, grpno, indent 
+from tb_bbs 
+order by grpno desc, indent asc;
 
+select grpno, count(*)
+from tb_bbs
+group by grpno
+order by grpno desc;
+-> 그룹번호별로 총갯수
+
+select BB.subject, AA.reply
+from(
+		select grpno, count(*)-1 as reply
+		from tb_bbs
+		group by grpno
+	) AA join tb_bbs BB
+on AA.grpno=BB.grpno
+where AA.reply>0
+order by BB.grpno desc;
+-> 그룹번호별 총갯수-1 = 0부터 시작
+-> 그룹화된 테이블 - 전체 테이블을 그룹번호가 동일한 것만 조인
+-> BB.indent가 0인 행만 즉, 부모글만
+
+select BB.subject, BB.indent, AA.grpno, AA.reply
+from(     
+        select grpno, count(*)-1 as reply     
+        from tb_bbs
+        group by grpno
+     ) AA join tb_bbs BB
+on AA.grpno=BB.grpno
+where BB.indent=0
+order by BB.grpno desc, BB.indent asc;
 
 ////////////////////////////////////////////////////////
 

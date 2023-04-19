@@ -38,6 +38,7 @@
 		
 		//오늘 날짜를 문자열 "2023-04-14"만들기
 		String today=Utility.getDate();
+		
 	
 		for(int i=0; i<list.size(); i++){
 			dto=list.get(i);
@@ -66,6 +67,14 @@
 				if(dto.getReadcnt()>=10){
 					out.println("<img src='../images/hot.gif'>");
 				}
+				
+				//답변게시글 수 표현하기
+				if(dto.getIndent()==0){
+					int cntreply=dao.cntreply(dto);
+					out.println("("+cntreply+")");	
+				}
+				
+				
 				
 %>				
 				</td>
