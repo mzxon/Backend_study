@@ -48,4 +48,38 @@ public class MemberDAO { //Data Access Object
 		}
 		return result;
 	}
+	
+	public int duplecateID(String id) {
+		int cnt=0;
+		
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			sql.append(" SELECT count(id) as cnt ");
+			sql.append(" FROM member ");
+			sql.append(" WHERE id=? ");
+			
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				cnt=rs.getInt("cnt");
+			}
+		
+		} catch (Exception e) {
+			System.out.println("아이디중복확인실패:"+e);
+		} finally {
+			DBClose.close(con, pstmt);
+		}
+		
+		
+		
+		
+		
+		return cnt;
+	}
+	
+	
+	
 }

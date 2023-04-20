@@ -47,9 +47,13 @@ commit;
 
 select mlevel
 from member
-where id=? and passwd=? and mlevel in ('A1', 'B1', 'C1', 'D1');
+where id='webmaster' and passwd='12341234' and mlevel in ('A1', 'B1', 'C1', 'D1');
 
 
+--아이디 중복 확인
+select count(id)
+from member
+where id=?;
 
 
 

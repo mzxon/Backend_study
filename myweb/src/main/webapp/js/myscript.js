@@ -98,6 +98,21 @@ function loginCheck(){//로그인 유효성 검사 (아이디, 비번)
 	return true;
 }
 
+function idCheck(){ //아이디 중복확인
+	
+	//모달창 만들기
+	//->부모창과 자식창이 한몸으로 구성되어 있음
+	//->참조 https://www.w3schools.com/bootstrap/bootstrap_modal.asp
+	
+	
+	//새창 만들기
+	//->부모창과 자식창이 별개로 구성되어 있음
+	//->모바일에 기반을 둔 frontend단에서는 사용하지 말것!!
+	//->참조 https://www.w3schools.com/jsref/met_win_open.asp
+	//window.open("파일명", "새창이름", "다양한옵션들");
+	window.open("idCheckForm.jsp", "idwin", "width=500, height=350");
+	
+}
 
 
 
