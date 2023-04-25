@@ -1,22 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+<%@ include file="auth.jsp" %>
+<%@ include file="ssi.jsp" %>    
 <%@ include file="../header.jsp" %>
 
-<!-- 본문 시작 memberForm.jsp-->
+<!-- 본문 시작 memberModify.jsp-->
 <div class="container">
-<h3>* 회/원/가/입 *</h3>
+<h3>* 회원정보 수정 *</h3>
 
 <span style="color:red; fon-weight:bold">* 필수입력</span>
 <br>
 
-<form name="memfrm" id="memfrm" action="memberProc.jsp" >
+
+<form name="memfrm" id="memfrm" action="memberModifyProc.jsp" >
 <table class="table" style="background-color:white;">
 <tr>
 	<th>*아이디</th>
 	<td style="text-align:left">
-		<input type="text" name="id" id="id" size="10" maxlength="10" readonly>
-		<input type="button" value="ID중복확인" onclick="idCheck()">
+		<input type="text" name="id" id="id" size="10" maxlength="10" value="<%=s_id%>" readonly>
 	</td>
 </tr>
 <tr>

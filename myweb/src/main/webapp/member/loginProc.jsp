@@ -58,17 +58,7 @@
 		
 		//요청한 사용자 PC에 쿠키값 저장
 		response.addCookie(cookie);		
-
-
-
-
-		
-		
 		//쿠키종료--------------------------------------
-		
-		
-		
-		
 		
 		//첫페이지 이동
 		//http://localhost:9090/myweb/index.jsp

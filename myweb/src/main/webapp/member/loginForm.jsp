@@ -55,6 +55,9 @@
 }else{ //로그인 성공했다면
 	out.println("<strong>" + s_id + "</strong> 님");
 	out.println("<a href='logout.jsp'>[로그아웃]</a>");
+	out.println("<br>");
+	out.println("<a href='memberModify.jsp'>[회원정보수정]</a>");
+	out.println("<a href='memberWithdraw.jsp'>[회원탈퇴]</a>");
 }
 %>
 

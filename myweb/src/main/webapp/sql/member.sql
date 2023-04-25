@@ -56,15 +56,41 @@ from member
 where id=?;
 
 
+-- 회원가입
+insert into member(id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate)
+values(?,?,?,?,?,?,?,?,?,'D1', sysdate)    
+
+
+
+--아이디/비번찾기
+
+1) 이름과 이메일 일치하면
+select id
+from member
+where mname=? and email=?
+
+2)
+update member
+set passwd=?
+where mname=? and email=?
 
 
 
 
-
-
-
-
-
+1) [회원정보수정]
+  - memberModify.jsp
+  - 현재 로그인 중인 ID와 일치하는 수정할 행을 DB에서 가져와서,
+    select * from member where id=?
+    수정폼(memberForm.jsp참조)에 출력
+  - 아이디 수정 불가
+  - 비밀번호 수정 가능
+이강사오후 12:43
+2) [회원탈퇴]
+  - memberWithdraw.jsp
+  - 비밀번호를 입력받아서, 비밀번호가 일치하면 회원탈퇴한다
+    단, 회원탈퇴를 하면 회원정보를 delete하지 말고
+        회원등급을 F1으로 수정한다 (update)
+  - 세션정보 모두 제거하기
 
 
 
