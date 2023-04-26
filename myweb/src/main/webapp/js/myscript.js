@@ -168,9 +168,77 @@ function findIDCheck(){ //아이디/비번 찾기 유효성 검사
 	return true;
 }
 
+function pdsCheck(){
+	//포토갤러리 유효성 검사
+
+	//1)이름
+	let mname=document.getElementById("mname").value;
+	mname=mname.trim();
+	if(mname.length<=1){
+		alert("이름 두글자 이상 입력해주세요");
+		document.getElementById("mname").focus();
+		return false;
+	}
+	
+	//2)제목
+	let subject=document.getElementById("subject").value;
+	subject=subject.trim();
+	if(!(subject.length>=5 && subject.length<=10)){
+		alert("아이디 5~10글자 이내로 입력해주세요");
+		document.getElementById("subject").focus();
+		return false;
+	}
+	
+	//3)비밀번호
+	let passwd=document.getElementById("passwd").value;
+	passwd=passwd.trim();
+	if(!(passwd.length>=5 && passwd.length<=10)){
+		alert("비밀번호 5~10글자 이내로 입력해주세요");
+		document.getElementById("passwd").focus();
+		return false;
+	}
+
+	//4)첨부파일
+	//-> 파일의 확장명이 이미지 파일인지 확인하시오 (png, jpg, dif)
+	let filename=document.getElementById("filename").value;
+	filename=filename.trim();
+	if(filename.length==0){
+		alert("첨부 파일 선택하세요!");
+		return false;
+	}else{
+		//filename변수값에서 마지막 .의 순서값
+		let dot=filename.lastIndexOf(".");
+		//확장명 : 마지막 . 이후 문자열 자르기
+		let ext=filename.substr(dot+1);
+		//확장명을 전부 소문자로 치환
+		ext=ext.toLowerCase();
+
+		if(ext=="png" || ext=="jpg" || ext=="gif"){
+			return true;
+		}else{
+			alert("이미지 파일만 업로드 가능합니다!");
+			return false;
+		}
+	}
+}
 
 
-
+function pwCheck2(){
+	let passwd=document.getElementById("passwd").value;
+    passwd=passwd.trim();
+    if(passwd.length<4 || isNaN(passwd)){
+        alert("비밀번호 4글자 이상 숫자로 입력해주세요");
+        document.getElementById("passwd").focus();
+        return false;
+    }
+    
+    let message="첨부 파일도 삭제됩니다. \n계속 진행할까요?";
+    if(confirm(message)){ //확인true, 취소false
+		return true;
+	}else{
+		return false;
+	}
+}
 
 	
 

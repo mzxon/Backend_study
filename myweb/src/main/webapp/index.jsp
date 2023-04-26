@@ -41,11 +41,12 @@
       	<img src="images/JJANGlogo.png" style="width:130px"></a><!-- / : 절대경로. 루트에서 찾겠다 -->
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="./bbs/bbsList.jsp"><img src="images/hd.gif" style="width:30px; margin-bottom:5px;">게시판</a></li>
-        <li><a href="./notice/noticeList.jsp"><img src="images/JJ.gif" style="width:30px; margin-bottom:5px;">공지사항</a></li>
-        <li><a href="./member/loginForm.jsp"><img src="images/Jre.gif" style="width:30px; margin-bottom:5px;">로그인</a></li>
-        <li><a href="#"><img src="images/Jup.gif" style="width:30px; margin-bottom:5px;">메일보내기</a></li>
+      <ul class="nav navbar-nav navbar-right">        
+      	<li><a href="./member/loginForm.jsp">로그인</a></li>
+        <li><a href="./bbs/bbsList.jsp">게시판</a></li>
+        <li><a href="./notice/noticeList.jsp">공지사항</a></li>
+        <li><a href="./pds/pdsList.jsp">포토갤러리</a></li>
+        <li><a href="./mail/mailForm.jsp">메일보내기</a></li>
       </ul>
     </div>
   </div>
