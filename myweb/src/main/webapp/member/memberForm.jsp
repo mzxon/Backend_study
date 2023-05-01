@@ -40,7 +40,7 @@
 <tr>
     <th>*이메일</th>
     <td style="text-align: left">
-    	<input type="text" name="email" id="email" size="10" maxlength="50" readonly>
+    	<input type="text" name="email" id="email" size="20" maxlength="50" readonly>
     	<input type="button" value="Email중복확인" onclick="emailCheck()"><!-- myscript.js -->
     </td>
 </tr>

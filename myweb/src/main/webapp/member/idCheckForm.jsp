@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>idCheckForfm.jsp</title>
+	<title>idCheckForm.jsp</title>
 </head>
 <body>
 	<div style="text-align:center">

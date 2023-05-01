@@ -119,7 +119,7 @@ public class MemberDAO { //Data Access Object
 	         
 	        sql=new StringBuilder();
 	        sql.append(" INSERT INTO member(id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate) ");
-	        sql.append(" VALUES (?,?,?,?,?,?,?,?,?,'D1', sysdate) ");
+	        sql.append(" VALUES (?,?,?,?,?,?,?,?,?,'D1', now()) ");
 	      
 	         
 	        pstmt=con.prepareStatement(sql.toString());

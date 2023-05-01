@@ -9,16 +9,18 @@
 <div class="container">
 <h3>* 회원정보 수정 *</h3>
 
+<%
+	dto=dao.selectID(s_id);
+%>
 <span style="color:red; fon-weight:bold">* 필수입력</span>
 <br>
-
 
 <form name="memfrm" id="memfrm" action="memberModifyProc.jsp" >
 <table class="table" style="background-color:white;">
 <tr>
 	<th>*아이디</th>
 	<td style="text-align:left">
-		<input type="text" name="id" id="id" size="10" maxlength="10" value="<%=s_id%>" readonly>
+		<input type="text" name="id" id="id" size="10" maxlength="10" value="<%=s_id %>" readonly>
 	</td>
 </tr>
 <tr>
@@ -36,39 +38,39 @@
 <tr>
 	<th>*이름</th>
 	<td style="text-align:left">
-		<input type="text" name="mname" id="mname" size="20" maxlength="20" required>
+		<input type="text" name="mname" id="mname" size="20" maxlength="20" value="<%=dto.getMname()%>"required>
 	</td>
 </tr>
 <tr>
     <th>*이메일</th>
     <td style="text-align: left">
-    	<input type="text" name="email" id="email" size="10" maxlength="50" readonly>
+    	<input type="text" name="email" id="email" size="20" maxlength="50" value="<%=dto.getEmail()%>" readonly>
     	<input type="button" value="Email중복확인" onclick="emailCheck()"><!-- myscript.js -->
     </td>
 </tr>
 <tr>
     <th>전화번호</th>
-    <td style="text-align: left"><input type="text" name="tel" id="tel" size="15" maxlength="14"></td>
+    <td style="text-align: left"><input type="text" name="tel" id="tel" size="15" maxlength="14" value="<%=dto.getTel()%>"></td>
 </tr>
 <tr>
     <th>우편번호</th>
     <td style="text-align: left">
-      <input type="text" name="zipcode" id="zipcode" size="7"  readonly>
+      <input type="text" name="zipcode" id="zipcode" size="7"  value="<%=dto.getZipcode()%>" readonly>
       <input type="button" value="주소찾기" onclick="DaumPostcode()">    
     </td>
 </tr>
 <tr>  
     <th>주소</th>
-    <td style="text-align: left"><input type="text" name="address1" id="address1" size="45" readonly></td>
+    <td style="text-align: left"><input type="text" name="address1" id="address1" size="45" value="<%=dto.getAddress1()%>" readonly></td>
 </tr>
 <tr>  
     <th>나머지주소</th>
-    <td style="text-align: left"><input type="text" name="address2" id="address2" size="45"></td>
+    <td style="text-align: left"><input type="text" name="address2" id="address2" size="45" value="<%=dto.getAddress2()%>"></td>
 </tr>
 <tr>  
   <th>직업</th>
   <td style="text-align: left">
-        <select name="job"  id="job">
+        <select name="job"  id="job" >
           <option value="0">선택하세요.</option>
           <option value="A01">회사원</option>
           <option value="A02" selected>IT관련직</option>
@@ -80,7 +82,7 @@
 </tr>
 <tr>
     <td colspan="2">
-        <input type="submit" value="회원가입"  class="btn btn-primary"/>
+        <input type="submit" value="수정"  class="btn btn-primary"/>
         <input type="reset"  value="취소"     class="btn btn-primary"/>
     </td>
 </tr>

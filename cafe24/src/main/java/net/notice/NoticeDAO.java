@@ -1,4 +1,4 @@
-package net.bbs;
+package net.notice;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
-public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
+public class NoticeDAO { //Data Access Object 데이터베이스 관련 작업
 	
 	private DBOpen dbopen=null;
 	private Connection con=null;
@@ -16,18 +16,18 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 	private ResultSet rs=null;
 	private StringBuilder sql=null;
 	
-	public BbsDAO() { //기본생성자
+	public NoticeDAO() { //기본생성자
 		dbopen=new DBOpen();
 	}
 	
-	public int create(BbsDTO dto) {
+	public int create(NoticeDTO dto) {
 		int cnt=0;
 		try {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
 			sql.append(" INSERT INTO tb_bbs(bbsno, wname, subject, content, passwd, ip, grpno)");
-			sql.append(" VALUES (bbs_seq.nextval, ?, ?, ?, ?, ?, (select nvl(max(bbsno),0)+1 from tb_bbs))");
+			sql.append(" VALUES (noticeno_seq.nextval, ?, ?, ?, ?, ?, (select nvl(max(bbsno),0)+1 from tb_notice))");
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getWname());
@@ -47,14 +47,14 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 	}
 	
 	
-	public ArrayList<BbsDTO> list(){
-		ArrayList<BbsDTO> list=null;
+	public ArrayList<NoticeDTO> list(){
+		ArrayList<NoticeDTO> list=null;
 		try {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
 			sql.append(" select bbsno, wname, subject, readcnt, regdt, indent ");
-			sql.append(" from tb_bbs");
+			sql.append(" from tb_notice");
 			sql.append(" order by grpno DESC, ansnum ASC");
 			
 			pstmt=con.prepareStatement(sql.toString());
@@ -62,7 +62,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 			if(rs.next()) {
 				list=new ArrayList<>();
 				do {
-					BbsDTO dto=new BbsDTO();
+					NoticeDTO dto=new NoticeDTO();
 					dto.setBbsno(rs.getInt("bbsno"));
 					dto.setWname(rs.getString("wname"));
 					dto.setSubject(rs.getString("subject"));
@@ -81,14 +81,14 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 		return list;
 	}
 	
-	public int count(BbsDTO dto){
+	public int count(NoticeDTO dto){
 		int cnt=0;
 		try {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
 			sql.append(" select bbsno ");
-			sql.append(" from tb_bbs");
+			sql.append(" from tb_notice");
 			
 			pstmt=con.prepareStatement(sql.toString());
 			rs=pstmt.executeQuery();
@@ -103,14 +103,14 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 		return cnt;
 	}
 	
-	public BbsDTO read(int bbsno) {
-		BbsDTO dto=null;
+	public NoticeDTO read(int bbsno) {
+		NoticeDTO dto=null;
 		try {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
 			sql.append(" SELECT bbsno, wname, subject, content, readcnt, regdt, ip, grpno, indent, ansnum");
-			sql.append(" FROM tb_bbs");
+			sql.append(" FROM tb_notice");
 			sql.append(" WHERE bbsno=?");
 			
 			pstmt=con.prepareStatement(sql.toString());
@@ -118,7 +118,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 			
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				dto=new BbsDTO();
+				dto=new NoticeDTO();
 				dto.setBbsno(rs.getInt("bbsno"));
 				dto.setWname(rs.getString("wname"));
 				dto.setSubject(rs.getString("subject"));
@@ -144,7 +144,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-			sql.append(" UPDATE tb_bbs");
+			sql.append(" UPDATE tb_notice");
 			sql.append(" SET readcnt=readcnt+1");
 			sql.append(" WHERE bbsno=?");
 			
@@ -159,13 +159,13 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 		}
 	}
 	
-	public int delete(BbsDTO dto) {
+	public int delete(NoticeDTO dto) {
 		int cnt=0;
 		try {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-			sql.append(" DELETE FROM tb_bbs");
+			sql.append(" DELETE FROM tb_notice");
 			sql.append(" WHERE bbsno=? AND passwd=?");
 			
 			pstmt=con.prepareStatement(sql.toString());
@@ -181,13 +181,13 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 		return cnt;
 	}
 	
-	public int update(BbsDTO dto) {
+	public int update(NoticeDTO dto) {
 		int cnt=0;
 		try {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
-			sql.append(" UPDATE tb_bbs");
+			sql.append(" UPDATE tb_notice");
 			sql.append(" SET wname=?, subject=?, content=?, ip=?");
 			sql.append(" WHERE bbsno=? AND passwd=?");
 			
@@ -202,7 +202,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 			cnt=pstmt.executeUpdate();
 			
 		} catch (Exception e) {
-			System.out.println("수정 실패 :"+e);
+			System.out.println("삭제 실패 :"+e);
 		} finally {
 			DBClose.close(con, pstmt);
 		}
@@ -210,7 +210,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 	}
 	
 	
-	public int reply(BbsDTO dto) {
+	public int reply(NoticeDTO dto) {
 		int cnt=0;
 		try {
 			con=dbopen.getConnection();
@@ -221,7 +221,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 			int indent=0;	//부모글 들여쓰기
 			int ansnum=0;	//부모글 글순서
 			sql.append(" SELECT grpno, indent, ansnum ");
-			sql.append(" FROM tb_bbs ");
+			sql.append(" FROM tb_notice ");
 			sql.append(" WHERE bbsno=? ");
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setInt(1, dto.getBbsno());
@@ -238,7 +238,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 			
 			//2) 글순서 재조정하기(update문)
 			sql.delete(0, sql.length()); //1단계에서 사용했던 sql값 지우기
-			sql.append(" UPDATE tb_bbs ");
+			sql.append(" UPDATE tb_notice ");
 			sql.append(" SET ansnum=ansnum+1 ");
 			sql.append(" WHERE grpno=? AND ansnum>=? ");
 			pstmt=con.prepareStatement(sql.toString());
@@ -249,8 +249,8 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 			
 			//3) 답변글 추가하기(insert문)
 			sql.delete(0, sql.length());
-			sql.append(" INSERT INTO tb_bbs (bbsno, wname, subject, content, passwd, ip, grpno, indent, ansnum) ");
-			sql.append(" VALUES (bbs_seq.nextval, ? , ? , ? , ? , ? , ? , ? , ?) ");
+			sql.append(" INSERT INTO tb_notice (bbsno, wname, subject, content, passwd, ip, grpno, indent, ansnum) ");
+			sql.append(" VALUES (noticeno_seq.nextval, ? , ? , ? , ? , ? , ? , ? , ?) ");
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getWname());
@@ -284,7 +284,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 			
 			sql=new StringBuilder();
 			sql.append(" SELECT COUNT(*) as cnt ");
-			sql.append(" FROM tb_bbs ");
+			sql.append(" FROM tb_notice ");
 			
 			if(word.length()>=1) {//검색어가 존재할때
 				String search="";
@@ -316,14 +316,14 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 	}
 	
 	
-	public ArrayList<BbsDTO> list2(String col, String word){
-		ArrayList<BbsDTO> list=null;
+	public ArrayList<NoticeDTO> list2(String col, String word){
+		ArrayList<NoticeDTO> list=null;
 		try {
 			con=dbopen.getConnection();
 			
 			sql=new StringBuilder();
 			sql.append(" select bbsno, wname, subject, readcnt, regdt, indent ");
-			sql.append(" from tb_bbs");
+			sql.append(" from tb_notice");
 			
 			if(word.length()>=1) { //검색어가 존재한다면
 				String search="";
@@ -347,7 +347,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 			if(rs.next()) {
 				list=new ArrayList<>();
 				do {
-					BbsDTO dto=new BbsDTO();
+					NoticeDTO dto=new NoticeDTO();
 					dto.setBbsno(rs.getInt("bbsno"));
 					dto.setWname(rs.getString("wname"));
 					dto.setSubject(rs.getString("subject"));
@@ -366,8 +366,8 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 		return list;
 	}
 	
-	public ArrayList<BbsDTO> list3(String col, String word, int nowPage, int recordPerPage){
-		ArrayList<BbsDTO> list=null;
+	public ArrayList<NoticeDTO> list3(String col, String word, int nowPage, int recordPerPage){
+		ArrayList<NoticeDTO> list=null;
 		
 		//페이지당 출력할 행의 갯수(10개를 기준)
         //1 페이지 : WHERE r>=1  AND r<=10;
@@ -389,7 +389,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
         		sql.append("  		SELECT bbsno, subject, wname, readcnt, indent, regdt, rownum as r ");
         		sql.append(" 		FROM ( ");
         		sql.append(" 				SELECT bbsno, subject, wname, readcnt, indent, regdt ");
-        		sql.append(" 				FROM tb_bbs ");
+        		sql.append(" 				FROM tb_notice ");
         		sql.append(" 				ORDER BY grpno DESC, ansnum ASC ");
         		sql.append(" 			) ");
         		sql.append(" 	 ) ");
@@ -401,7 +401,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
         		sql.append("  		SELECT bbsno, subject, wname, readcnt, indent, regdt, rownum as r ");
         		sql.append(" 		FROM ( ");
         		sql.append(" 				SELECT bbsno, subject, wname, readcnt, indent, regdt ");
-        		sql.append(" 				FROM tb_bbs ");
+        		sql.append(" 				FROM tb_notice ");
         		
         		String search="";
 				if(col.equals("subject_content")) {
@@ -427,7 +427,7 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 			if(rs.next()) {
 				list=new ArrayList<>();
 				do {
-					BbsDTO dto=new BbsDTO();
+					NoticeDTO dto=new NoticeDTO();
 					dto.setBbsno(rs.getInt("bbsno"));
 					dto.setWname(rs.getString("wname"));
 					dto.setSubject(rs.getString("subject"));
@@ -444,6 +444,8 @@ public class BbsDAO { //Data Access Object 데이터베이스 관련 작업
 		}
 		return list;
 	}
+	
+	
 	
 	
 	
