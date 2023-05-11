@@ -31,25 +31,27 @@
 		<th>음원파일명</th>
 		<th>수정/삭제</th>
 	</tr>
-	</table>
+	
 	
 	<c:forEach var="dto" items="${list}">
 			<tr>
-				<td>${dto.mediagno}</td>
-				<td>${dto.title}</td>
+				<td>${dto.mediano}</td>
+				<td><a href="read.do?mediano=${dto.mediano}">${dto.title}</a></td>
 				<td>${dto.rdate}</td>
 				<td>
 					${dto.filename}
 					${dto.filesize}
+					<c:set var="filesize" value="${fn:substringBefore(dto.filesize/1024, '.')}"></c:set>
+                	${filesize}KB
 				</td>
 
 				<td>
-					<input type="button" value="수정">
-					<input type="button" value="삭제">
+					<input type="button" value="수정" onclick="location.href='update.do?mediano=${dto.mediagroupno}'">
+					<input type="button" value="삭제" onclick="location.href='delete.do?mediano=${dto.mediagroupno}'">
 				</td>
 			</tr>
 		</c:forEach>
-
+	</table>
 	
 
 </body>
