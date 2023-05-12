@@ -32,7 +32,7 @@
 		<th>수정/삭제</th>
 	</tr>
 	
-	
+	<!-- Media.java  30행 mav.addObject("list", dao.list(mediagroupno)); -->
 	<c:forEach var="dto" items="${list}">
 			<tr>
 				<td>${dto.mediano}</td>
