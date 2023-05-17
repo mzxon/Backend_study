@@ -13,3 +13,5 @@ create table product (
 
 --상품번호 시퀀스 생성
 create sequence product_seq;
+
+commit;
