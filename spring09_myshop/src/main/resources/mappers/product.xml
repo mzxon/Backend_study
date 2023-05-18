@@ -41,6 +41,12 @@
 		WHERE product_code=#{product_code}
 	</delete>
 	
+	<delete id="update" parameterType="java.util.Map">
+		UPDATE product
+		SET product_name=#{product_name}, price=#{price}, description=#{description}, filename=#{filename}, filesize=#{filesize}
+		WHERE product_code=#{product_code} 
+	</delete>
+	
    
    
    

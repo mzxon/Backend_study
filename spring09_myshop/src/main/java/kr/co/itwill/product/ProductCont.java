@@ -1,6 +1,7 @@
 package kr.co.itwill.product;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -9,12 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
+import kr.co.itwill.comment.CommentDTO;
 
 @Controller
 @RequestMapping("/product")
@@ -123,4 +128,65 @@ public class ProductCont {
 		return "redirect:/product/list";
 		
 	}//delete() end
+	
+	
+	
+	
+	
+	@RequestMapping("/update")
+	public String update(@RequestParam Map<String, Object> map
+					  	,@RequestParam MultipartFile img
+					  	,HttpServletRequest req) {
+		
+		
+		String filename="-";
+		long filesize=0;
+		
+		if(img != null && !img.isEmpty()) {
+			filename=img.getOriginalFilename();
+			filesize=img.getSize();
+			try {
+				ServletContext application=req.getSession().getServletContext();
+				String path=application.getRealPath("/storage"); //실제 경로
+				img.transferTo(new File(path+"\\"+filename)); //파일저장
+				
+			} catch (Exception e) {
+				e.printStackTrace(); //System.out.println(e);
+			}//try end
+		}else {
+			int product_code=(int) map.get("product_code");
+			Map<String, Object> product=productDao.detail(product_code);
+			filename=product.get("FILENAME").toString();
+			filesize=(long)product.get("FILESIZE");
+		}//if end
+		
+		map.put("filename", filename);
+		map.put("filesize", filesize);
+		
+		productDao.update(map);
+		return "redirect:/product/list";
+	
+	}//update()end
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
