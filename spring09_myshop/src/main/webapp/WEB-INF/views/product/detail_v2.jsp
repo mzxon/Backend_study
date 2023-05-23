@@ -25,15 +25,6 @@
 				document.productfrm.submit();
 			}//if end
 		}//product_delete() end
-		
-		function product_cart(){
-			if($("#qty").val()==0){
-				alert("상품수량 선택해주세요!");
-			}else{
-				document.productfrm.action="/cart/insert";
-				document.productfrm.submit();
-			}
-		}
 	</script>
 </head>
 <body>
@@ -71,24 +62,10 @@
 	        </td>
 	    </tr>
 	    <tr>
-	    	<td>상품수량</td>
-	    	<td>
-	    		<select name="qty" id="qty">
-	    			<option value="0">★선택★</option>
-	    			<option value="1">1</option>
-	    			<option value="2">2</option>
-	    			<option value="3">3</option>
-	    			<option value="4">4</option>
-	    			<option value="5">5</option>
-	    		</select>
-	    	</td>
-	    </tr>
-	    <tr>
 	        <td colspan="2" align="center">
 	            <input type="hidden" name="product_code" value="${product.PRODUCT_CODE}">
 	            <input type="button" value="상품수정" onclick="product_update()"> 
 	            <input type="button" value="상품삭제" onclick="product_delete()"> 
-	            <input type="button" value="장바구니담기" onclick="product_cart()"> 
 	        </td>
 	    </tr>    
 	    </table>  
