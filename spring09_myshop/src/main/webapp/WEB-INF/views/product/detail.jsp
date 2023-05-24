@@ -11,6 +11,12 @@
 	<meta charset="UTF-8">
 	<title>detail.jsp</title>
 	<script src="/js/jquery-3.6.4.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	
 	<link href="/css/main.css" rel="stylesheet" type="text/css">
 	
 	<script>
@@ -37,7 +43,8 @@
 	</script>
 </head>
 <body>
-
+	
+	<div class="container">
 	<h3>상품상세보기 / 상품수정 / 상품삭제</h3>
 	
 	<p>
@@ -45,7 +52,7 @@
     </p>
 	
 	<form name="productfrm" id="productfrm" method="post" enctype="multipart/form-data">
-	    <table border="1">
+	    <table class="table table-hover">
 	    <tr>
 	        <td>상품명</td>
 	        <td> <input type="text" name="product_name" value="${product.PRODUCT_NAME}"> </td>
@@ -112,7 +119,7 @@
 		<!-- 댓글목록 -->
 		<div class="commentList"></div>
 	</div>
-	
+	</div>
 	
 	<!-- 댓글 관련 자바스크립트 -->
 	<script>

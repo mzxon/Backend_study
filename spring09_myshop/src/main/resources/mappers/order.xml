@@ -7,12 +7,40 @@
 <mapper namespace="order">
 	
 	<select id="orderno" resultType="String" parameterType="String">
-		select nvl(max(orderno), concat(#{date}, 0)+1)
+		select nvl(max(orderno), '1')
 		from orderlist
 		where orderno like #{date} || '%' 
 	</select>
 	
+	<select id="totalamount" resultType="int" parameterType="String">
+		select sum(price*qty)
+		from cart
+		where id=#{s_id}
+	</select>
+	
+	<select id="orderlistInsert" parameterType="kr.co.itwill.order.OrderDTO">
+		insert into orderlist (orderno, id, totalamount, payment, deliverynm, deliveryaddr, deliverymsg, ordercheck )
+		values ( #{orderno}, #{id}, #{totalamount}, #{payment}, #{deliverynm}, #{deliveryaddr}, #{deliverymsg}, 'I' )
+	</select>
+	
+	<select id="orderdetailInsert" parameterType="java.util.HashMap">
+		insert into orderdetail (ono, orderno, product_code, qty, price )
+			select orderdetail_seq.nextval, '20305241303181', product_code, qty, price
+			from cart
+			where id='test'
+	</select>
 		
+	<delete id="cartDelete"  parameterType="String" >
+		DELETE FROM cart
+		WHERE id=#{s_id}
+	</delete>	
+	
+	<select id="orderlist" resultType="kr.co.itwill.order.OrderDTO" parameterType="String">
+        SELECT orderno,id ,totalamount, payment, deliverynm, deliveryaddr, deliverymsg, ordercheck 
+        FROM orderlist 
+        WHERE id=#{s_id}
+    </select>
+	
 </mapper>     
 
 

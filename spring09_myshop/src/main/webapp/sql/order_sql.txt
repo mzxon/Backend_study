@@ -16,9 +16,53 @@ create table orderlist (
 
 --주문서 번호 생성
 
-select nvl(ordeno), 1)
+select nvl(max(orderno), '1')
+from orderlist
+where orderno like '20230523175647%';
+
+
+--총결제금액
+select sum(price*qty)
+from cart
+where id=?;
+
+
+/////////////////////////////////////////////////////////
+
+--주문 상세 내역
+create table orderdetail (
+	 ono			number		primary key --번호
+	,orderno		char(15)	not null
+	,product_code	number		not null
+	,qty			number		not null
+	,price			number		not null
+);
+
+--주문 상세 내역 시퀀스 생성
+create sequence orderdetail_seq;
+
+
+--cart테이블에 있는 주문상품을 orderdetail 테이블에 옮겨 담기
+insert into orderdetail(ono, orderno, product_code, qty, price)
+	select orderdetail_seq.nextval, '20305241303181', product_code, qty, price
+	from cart
+	where id='test';
+
+
+
+
+
+
+
+
+
+select nvl(max(ordeno), concat('20230523171723', 0) +1)
 from ordrelist
 where orderno like '2023523171723%';
+
+insert into orderlist (orderno, id, totalamount, payment, deliverynm, deliveryaddr, ordercheck)
+values ('202305231756461', 'test', 0, 'card
+
 
 
 

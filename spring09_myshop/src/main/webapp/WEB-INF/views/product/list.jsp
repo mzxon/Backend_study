@@ -10,26 +10,34 @@
 <head>
 	<meta charset="UTF-8">
 	<title>list.jsp</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	<link href="../css/main.css" rel="stylesheet" type="text/css">
+	
 </head>
 <body>
+	<div class="container">
 	<h3>상품목록</h3>
-	<p>
-		<button type="button" onclick="location.href='write'">상품등록</button>
-		<button type="button" onclick="location.href='list'">상품전체목록</button>
-		<button type="button" onclick="location.href='../cart/list'">장바구니</button>
-	</p>
 	
+	<p>
+		<button type="button" onclick="location.href='list'" class="btn btn-outline-success" id="btn1">상품전체목록</button>
+		<button type="button" onclick="location.href='../cart/list'" class="btn btn-outline-success" id="btn1">장바구니</button>
+	</p>
 	<form action="search">
-		상품명 : <input type="text" name="product_name" value="${product_name}">
-			   <input type="submit" value="검색">
+	
+		상품명 : 
+			<input type="text" name="product_name" value="${product_name}">
+			<input type="submit" value="검색">
 	</form>
 
 	<hr>
 	상품갯수 : ${fn:length(list)}
 	<br><br>
-	<table border="1">
-	<tr>
+	<table class="table table-bordered">
+	<tr class="table-warning">
 		<c:forEach items="${list}" var="row" varStatus="vs">
 			<td>
 				<c:choose>
@@ -53,6 +61,7 @@
 		</c:forEach>
 	</tr>
 	</table>	
-	
+	<button type="button" onclick="location.href='write'" class="btn btn-outline-secondary">상품등록</button>
+	</div>
 </body>
 </html>

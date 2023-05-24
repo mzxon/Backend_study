@@ -10,6 +10,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>list.jsp</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	
+	
 	<link href="../css/main.css" rel="stylesheet" type="text/css">
 	<script>
 		function order(){
@@ -20,21 +27,21 @@
 	</script>
 </head>
 <body>
+	<div class="container">
 	<h3>장바구니목록</h3>
 	
-	<table border="1">
+	<table class="table">
 	<tr>
-		<th>아이디</th>
 		<th>번호</th>
 		<th>상품코드</th>
 		<th>상품가격</th>
 		<th>상품수량</th>
+		<th>총가격</th>
 		<th>삭제</th>
 	</tr>
 	
 	<c:forEach items="${list}" var="row">
 		<tr>
-			<td>${row.id}</td>
 			<td>${row.cartno}</td>
 			<td>${row.product_code}</td>
 			<td>${row.price}</td>
@@ -48,8 +55,8 @@
 	</table>	
 	
 	<br>
-	<input type="button" value="계속쇼핑하기" onclick="location.href='/product/list'">
-	<input type="button" value="주문 및 결제하기" onclick="order()">
-	
+	<input type="button" value="계속쇼핑하기" onclick="location.href='/product/list'" class="btn btn-outline-success" id="btn2">
+	<input type="button" value="주문 및 결제하기" onclick="order()" class="btn btn-outline-success" id="btn2">
+	</div>
 </body>
 </html>

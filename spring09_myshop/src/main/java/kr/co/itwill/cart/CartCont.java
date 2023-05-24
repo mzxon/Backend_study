@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.itwill.product.ProductDAO;
+
 
 
 @Controller
@@ -37,29 +39,15 @@ public class CartCont {
         dto.setId("test"); //임시로 test
     	//System.out.println(dto.toString());
 
+        
         ModelAndView mav=new ModelAndView();
         cartDao.cartInsert(dto);       
         mav.setViewName("cart/list");
 		mav.addObject("list", cartDao.cartlist(dto.getId()));
-
+		
 
         return mav;
     }//cartInsert() end
-    
-    
-    @RequestMapping("/list")
-    public ModelAndView list(HttpSession session) {
-       //로그인 했다면
-       //String s_id=session.getAttribute("s_id")
-       String s_id="test";
-       
-       ModelAndView mav = new ModelAndView();
-       mav.setViewName("cart/list");//  /WEB-INF/views/cart/list.jsp
-       mav.addObject("list", cartDao.cartlist(s_id));
-       
-       return mav;
-    }//list() end
-    
     
     
     @RequestMapping("/delete")
@@ -74,5 +62,18 @@ public class CartCont {
     	return "redirect:/cart/list";
 		
 	}//delete() end
+    
+    @RequestMapping("/list")
+    public ModelAndView list(HttpSession session) {
+       //로그인 했다면
+       //String s_id=session.getAttribute("s_id")
+       String s_id="test";
+       
+       ModelAndView mav = new ModelAndView();
+       mav.setViewName("cart/list");//  /WEB-INF/views/cart/list.jsp
+       mav.addObject("list", cartDao.cartlist(s_id));
+       
+       return mav;
+    }//list() end
         
 }//class end
